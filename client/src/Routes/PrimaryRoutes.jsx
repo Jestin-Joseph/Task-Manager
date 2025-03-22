@@ -10,7 +10,7 @@ export const primaryRoutes = [
         permission: "user"
     },
     {
-        route: "/alltasks",
+        route: "/tasks/:type?",
         page: <AllTasks />,
         title: "All Tasks",
         permission: "user"
