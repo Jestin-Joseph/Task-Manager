@@ -1,0 +1,45 @@
+.allTasks_ViewContainer {
+    color: white;
+    display: flex;
+    // border: 1px solid red;
+    flex-direction: column;
+    gap: 0.1em;
+    margin-left: 1em;
+
+
+    .allTasks_TitleContainer {
+
+        p {
+            font-weight: bold;
+            font-size: x-large;
+        }
+    }
+
+    .allTasks_TasksContainer {
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+
+        .allTasks_AddTaskBtn {
+            height: 210px;
+            width: 300px;
+            border: 3px dashed #1F1F1F;
+            border-radius: 0.8em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5em;
+            color: #1F1F1F;
+            cursor: pointer;
+            transition: all 0.2s;
+
+
+            &:hover {
+                color: white;
+                border-color: white;
+            }
+        }
+    }
+
+
+}

@@ -5,6 +5,8 @@ import { CirclePlus } from 'lucide-react';
 import TaskCard from '../../../Components/TaskCard/TaskCard';
 import Backdrop from '@mui/material/Backdrop';
 
+import Styles from './AllTasks.module.scss'
+
 function AllTasks() {
     const { type } = useParams();  // Capture "all" or "pending"
     const taskType = type || "all";
@@ -15,11 +17,13 @@ function AllTasks() {
     });
 
     return (
-        <div className='text-white w-full flex flex-col gap-4.5 '>
-            <div className='w-full'>
-                <p className='font-bold text-3xl w-full'>{data.title}</p>
+        <div 
+        className={Styles.allTasks_ViewContainer}
+        >
+            <div className={Styles.allTasks_TitleContainer}>
+                <p>{data.title}</p>
             </div>
-            <div className='h-full flex gap-5'>
+            <div className={Styles.allTasks_TasksContainer}>
                 {
                     data.content.map((cont) => (
                         <TaskCard
@@ -34,7 +38,7 @@ function AllTasks() {
                     ))
                 }
                 {taskType === "all" && <div
-                    className='flex justify-center transition-all duration-150  items-center border-3 cursor-pointer border-red  h-50 w-80 border-[#646464] rounded-md border-dashed text-[#646464] hover:border-white hover:text-white'
+                    className={Styles.allTasks_AddTaskBtn}
                 >
                     <CirclePlus size={50} />
                 </div>}
@@ -43,7 +47,7 @@ function AllTasks() {
             <Backdrop
                 sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
                 open={openTask.showBackdrop}
-                // onClick={() => { setOpenTask({ showBackdrop: false }) }}
+                onClick={() => { setOpenTask({ showBackdrop: false }) }}
             >
                 <div 
                     className='bg-[#1F1F1F] w-[80%] h-[80%] rounded-md'

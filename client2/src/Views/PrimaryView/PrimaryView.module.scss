@@ -1,0 +1,21 @@
+.PrimaryView_Container{
+    display: flex;
+    .viewNavigation{
+        position: absolute;
+        z-index: 50;
+        top: 0;
+        left: 0;
+    }
+
+    .renderingGround{
+        background-color: #121212;
+        // background-color: blue;
+
+        width: 100%;
+        // color: red;
+        height: auto;
+        min-height: 100vh;
+        padding: 1em;
+        margin-left: 70px;
+    }
+}

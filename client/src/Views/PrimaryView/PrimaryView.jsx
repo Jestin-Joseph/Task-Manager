@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../../Components/SideBar/Sidebar.jsx'
 import { Outlet } from 'react-router-dom'
-function PrimaryView({ page }) {
+function PrimaryView() {
   return (
     <div className="flex  ">
       <span className='absolute z-50 top-0 left-0'>
