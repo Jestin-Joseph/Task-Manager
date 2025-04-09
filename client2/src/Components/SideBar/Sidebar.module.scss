@@ -1,6 +1,8 @@
+@import "../../StylingComponent/colors";
+
 .sidebarContainer{
-    background-color: #121212;
-    color: #E8EAED;
+    background-color: $dark_bg;
+    color: $text_side;
     padding: 6px;
     height: 100dvh;
     width: 64px;

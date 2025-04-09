@@ -2,6 +2,7 @@ import PendingTasks from "../Views/AppViews/PendingTasks/PendingTasks";
 import AllTasks from "../Views/AppViews/AllTasks/AllTasks";
 import EditorView from "../Views/AppViews/EditiorView/EditorView";
 // import RichTextEditor from "../Components/Editor/Editor";
+import MyEditor from "../Components/Editor/Editor";
 export const primaryRoutes = [
     {
         route: "/",

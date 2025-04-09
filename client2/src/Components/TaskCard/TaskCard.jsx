@@ -13,12 +13,7 @@ function TaskCard({ title, desc, priority, pin, due, setOpenTask }, props) {
     return (
         <div
             className={Styles.taskCardContainer}
-            onClick={() => {
-                setOpenTask({
-                    showBackdrop: true,
-                    content: { title, desc, priority, pin, due }
-                })
-            }}
+            onClick={setOpenTask}
         >
             <div className={Styles.titleContainer}>
                 <p>

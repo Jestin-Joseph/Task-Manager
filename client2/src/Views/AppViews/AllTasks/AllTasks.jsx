@@ -6,34 +6,47 @@ import TaskCard from '../../../Components/TaskCard/TaskCard';
 import Backdrop from '@mui/material/Backdrop';
 
 import Styles from './AllTasks.module.scss'
+import ContentEditor from '../../../Components/Editor/ContentEditor';
 
 function AllTasks() {
     const { type } = useParams();  // Capture "all" or "pending"
     const taskType = type || "all";
 
+    const [taskData, setTaskData] = useState(data);
     const [openTask, setOpenTask] = useState({
         showBackdrop: false,
-        backdropDaat: {}
+        content: null,
     });
 
+    const updateTask = (updatedTask) => {
+        const updatedContent = taskData.content.map((task) =>
+            task.id === updatedTask.id ? updatedTask : task
+        );
+        setTaskData({ ...taskData, content: updatedContent });
+        setOpenTask({ ...openTask, content: updatedTask });
+    };
+
     return (
-        <div 
-        className={Styles.allTasks_ViewContainer}
+        <div
+            className={Styles.allTasks_ViewContainer}
         >
             <div className={Styles.allTasks_TitleContainer}>
                 <p>{data.title}</p>
             </div>
             <div className={Styles.allTasks_TasksContainer}>
                 {
-                    data.content.map((cont) => (
+                    taskData?.content.map((cont) => (
                         <TaskCard
                             key={cont.id}
-                            title={cont.name}
+                            title={cont.title}
                             desc={cont.description}
                             priority={cont.priority}
                             pin={cont.pin}
                             due={cont.due}
-                            setOpenTask={setOpenTask}
+                            setOpenTask={() => setOpenTask({
+                                showBackdrop: true,
+                                content: cont
+                            })}
                         />
                     ))
                 }
@@ -47,12 +60,15 @@ function AllTasks() {
             <Backdrop
                 sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
                 open={openTask.showBackdrop}
-                onClick={() => { setOpenTask({ showBackdrop: false }) }}
+                onClick={() => { console.log(openTask?.content) }}
             >
-                <div 
-                    className='bg-[#1F1F1F] w-[80%] h-[80%] rounded-md'
+                <div
+                    className={Styles.taskDetails}
                 >
-                   
+                    <ContentEditor
+                        data={openTask?.content}
+                        updateTask={updateTask}
+                    />
                 </div>
 
             </Backdrop>

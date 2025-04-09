@@ -1,70 +1,62 @@
-import { useState,  } from "react";
-import { Plus } from 'lucide-react';
-// Import the Slate components and React plugin.
+import React, { useState, useEffect } from 'react';
+import Styles from "./ContentEditor.module.scss";
+import MyEditor from "./Editor";
 
-function ContentEditor() {
-    const [contentText, setContentText] = useState("")
-    const [showOptions, setShowOptions] = useState(false);
+function ContentEditor({ data, updateTask }) {
+    const [localData, setLocalData] = useState({
+        ...data,
+        title: data?.title || ""
+    });
 
-    const availableStyles = ["Heading 2", "Heading 3", "Heading 4", "Text"]
+    function parseDMY(dateStr) {
 
-   
-
-    function handleKeyDown(e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            setContentText("")
-        }
+        const [month, day, year] = dateStr?.split('/');
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     }
 
+    useEffect(() => {
+        const today = new Date();
+        const todayDate = today.toLocaleDateString();
+        setLocalData({
+            ...data,
+            title: data?.title || "",
+            due: data?.due ? parseDMY(data?.due) : parseDMY(todayDate)
+        });
+    }, [data]);
 
-    
 
+    const handleHeadingEdit = (e) => {
+        const updated = { ...localData, title: e.target.value };
+        setLocalData(updated);
+        updateTask(updated);
+    };
 
     return (
-        <div
-            className="bg-[#1F1F1F] f-full h-full p-10"
-            aria-placeholder="heheheh"
-        >
-            <input className="w-full text-3xl p-2 font-bold mb-1.5" style={{ resize: "none" }} rows="1" placeholder="Enter Heading Here..">
-
-            </input>
-            <div id="ContenteContaier">
-                <span className="flex flex-row-reverse gap-1.5 relative">
-                    <button className="hover:bg-[#373737] h-fit w-fit rounded-md p-1 cursor-pointer" onClick={() => setShowOptions(!showOptions)}>
-                        <Plus />
-                    </button>
-                    <textarea
-                        value={contentText}
-                        onChange={(e) => { setContentText(e.target.value) }}
-                        onKeyDown={handleKeyDown}
-                        className="resize-none w-full border"
-                    >
-                       
-                    </textarea>
-                    
-
-                   
-                    {showOptions && (
-                        <div className="absolute top-full right-0 mt-2 w-48 bg-[#373737] border rounded-md shadow-lg">
-                            <ul className="p-2 space-y-1">
-                                {
-                                    availableStyles.map((sty, index) => (
-                                        <li key={`${sty}->${index}`}  className="p-2 hover:bg-gray-100 hover:text-[#373737] cursor-pointer">{sty}</li>
-                                    ))
-                                }
-
-                            </ul>
-                        </div>
-                    )}
-
-
-
+        <div className={Styles.ContentEditor_Container}>
+            <input
+                type="text"
+                className={Styles.ContentEditor_heading}
+                placeholder="Enter Heading Here.."
+                value={localData?.title}
+                onChange={handleHeadingEdit}
+            />
+            <div className={Styles.ContentEditor_Content}>
+                <span>
+                    <input className={Styles.ContentEditor_C_DateSelect} type='date' value={localData?.due} />
+                    <span className={Styles.ContentEditor_C_PrioritySelect}>
+                        <select style={{ color: localData?.priority === "High" ? "red" : localData?.priority === "Medium" ? "yellow" : "#65fe08" }} value={localData?.priority} name="priority" id="priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </span>
                 </span>
-        
-            </div>
 
-            
+                <textarea placeholder='enter a description here' />
+            </div>
+            <div className={Styles.ContentEditor_notes}>
+                <MyEditor initialData={localData?.description} />
+            </div>
 
         </div>
     );

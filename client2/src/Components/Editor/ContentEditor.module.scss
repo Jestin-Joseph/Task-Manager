@@ -1,0 +1,74 @@
+@import "/src/StylingComponent/colors.scss";
+@import "/src/StylingComponent/style.scss";
+
+.ContentEditor_Container {
+    // border: 1px solid $dark_sec_bg;
+    height: fit-content;
+    padding: 0.5em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .ContentEditor_heading {
+        background-color: transparent;
+        color: inherit;
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+        font-size: xx-large;
+        font-weight: bold;
+        // border: 1px solid red;
+        border: none;
+        // padding: 0.5em;
+        text-transform: capitalize;
+    }
+
+    .ContentEditor_Content {
+        // border: 1px solid red;
+        height: 10em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+
+        span {
+            display: flex;
+            gap: 1em;
+            // border: 1px solid red;
+
+            .ContentEditor_C_DateSelect {
+                background-color: transparent;
+                border: 1px solid $text_side;
+                color: $text_side;
+                padding: 0.8em;
+                border-radius: 0.5em;
+            }
+
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                filter: invert(1);
+                cursor: pointer;
+            }
+
+            .ContentEditor_C_PrioritySelect {
+                border: 1px solid $text_side;
+                border-radius: 0.5em;
+                padding-right: 0.4em;
+                select {
+                    background-color: transparent;
+                    border: none;
+                    color: $text_side;
+                    padding: 0.8em;
+                    font-weight: bold;
+                    outline: none;
+                }
+            }
+
+
+
+        }
+    }
+
+    .ContentEditor_notes {
+        border: 2px solid #252222;
+    }
+}

@@ -1,3 +1,6 @@
+@import "../../../StylingComponent/colors";
+@import "../../../StylingComponent/style";
+
 .allTasks_ViewContainer {
     color: white;
     display: flex;
@@ -23,8 +26,8 @@
         .allTasks_AddTaskBtn {
             height: 210px;
             width: 300px;
-            border: 3px dashed #1F1F1F;
-            border-radius: 0.8em;
+            border: 3px dashed $dark_sec_bg;
+            border-radius: $primary_radius;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,6 +42,14 @@
                 border-color: white;
             }
         }
+    }
+
+    .taskDetails{
+        background-color: $dark_sec_bg;
+        border-radius: $primary_radius;
+        // border: 1px solid red;
+        height: 80%;
+        width: 70%;
     }
 
 

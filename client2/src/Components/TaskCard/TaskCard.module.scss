@@ -1,3 +1,6 @@
+@import "../../StylingComponent/colors";
+@import "../../StylingComponent/style";
+
 .taskCardContainer {
     // border: 1px solid red;
 
@@ -5,9 +8,9 @@
     flex-direction: column;
     height: 210px;
     width: 300px;
-    border-radius: 0.8em;
-    border: 3px solid #1F1F1F;
-    background-color: #1F1F1F;
+    border-radius: $primary_radius;
+    border: 3px solid $dark_sec_bg;
+    background-color: $dark_sec_bg;
     cursor: pointer;
     padding: 0.5em;
     transition: all 0.3s;

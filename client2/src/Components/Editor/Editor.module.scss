@@ -1,0 +1,31 @@
+@import "/src/StylingComponent/colors.scss";
+@import "/src/StylingComponent/style.scss";
+
+.MyEditor_MenuContainer{
+    // border: 1px solid red;
+    border-radius: 45px;
+    padding: 0.4em;
+    background-color: #252222;
+    .MyEditor_ButtonContainer{
+        display: flex;
+        // flex-direction: column;
+        gap: 0.5em;
+        flex-wrap: wrap;
+        button{
+            // border: 1px sold green;
+            font-weight: bold;
+            background-color: transparent;
+            color: $text_side;
+            padding: 0.5em;
+            border: none;
+            cursor: pointer;
+        }
+
+        .MyEditor_BC_section1{
+            // border: 1px solid green;
+        }
+        .MyEditor_BC_section2{
+            // border: 1px solid blue;
+        }
+    }
+}
