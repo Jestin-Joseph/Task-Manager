@@ -13,18 +13,55 @@ function AllTasks() {
     const taskType = type || "all";
 
     const [taskData, setTaskData] = useState(data);
+
     const [openTask, setOpenTask] = useState({
         showBackdrop: false,
         content: null,
     });
 
-    const updateTask = (updatedTask) => {
-        const updatedContent = taskData.content.map((task) =>
-            task.id === updatedTask.id ? updatedTask : task
+    const deleteTask = (taskId) => {
+        const updatedTasks = taskData.content.filter((task) =>
+            task.id !== taskId
         );
-        setTaskData({ ...taskData, content: updatedContent });
-        setOpenTask({ ...openTask, content: updatedTask });
+        setTaskData({ ...taskData, content: updatedTasks })
+    }
+
+    const togglePin = (taskId) => {
+        const updatedTasks = taskData.content.map((task) =>
+            task.id === taskId ? { ...task, pin: !task.pin } : task
+        );
+        setTaskData({
+            ...taskData,
+            content: updatedTasks,
+        });
     };
+
+    const updateTask = (updatedTask) => {
+        const taskExists = taskData.content.some(task => task.id === updatedTask.id);
+
+        if (taskExists) {
+            // Update existing task
+            const updatedContent = taskData.content.map((task) =>
+                task.id === updatedTask.id ? updatedTask : task
+            );
+            setTaskData({ ...taskData, content: updatedContent });
+        } else {
+            // Create new task
+            const taskID = taskData.content.length + 1;
+            const today = new Date().toLocaleDateString('en-US'); // e.g., "05/10/2025"
+            const newTask = {
+                ...updatedTask,
+                id: taskID,
+                pin: false,
+                due: updatedTask.due || today
+            };
+            setTaskData({
+                ...taskData,
+                content: [...taskData.content, newTask]
+            });
+        }
+    };
+
 
     return (
         <div
@@ -38,6 +75,7 @@ function AllTasks() {
                     taskData?.content.map((cont) => (
                         <TaskCard
                             key={cont.id}
+                            id={cont.id}
                             title={cont.title}
                             desc={cont.description}
                             priority={cont.priority}
@@ -47,20 +85,27 @@ function AllTasks() {
                                 showBackdrop: true,
                                 content: cont
                             })}
+                            deleteTask={deleteTask}
+                            togglePin={togglePin}
                         />
                     ))
                 }
                 {taskType === "all" && <div
                     className={Styles.allTasks_AddTaskBtn}
+                    onClick={() => setOpenTask({
+                        showBackdrop: true,
+                        content: {}
+                    })}
                 >
                     <CirclePlus size={50} />
                 </div>}
 
             </div>
+
+            {/* open the task */}
             <Backdrop
                 sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
                 open={openTask.showBackdrop}
-                onClick={() => { console.log(openTask?.content) }}
             >
                 <div
                     className={Styles.taskDetails}
@@ -68,6 +113,7 @@ function AllTasks() {
                     <ContentEditor
                         data={openTask?.content}
                         updateTask={updateTask}
+                        close={() => { setOpenTask({ showBackdrop: false }) }}
                     />
                 </div>
 

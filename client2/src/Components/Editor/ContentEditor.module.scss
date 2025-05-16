@@ -26,7 +26,7 @@
 
     .ContentEditor_Content {
         // border: 1px solid red;
-        height: 10em;
+        // height: 10em;
         display: flex;
         flex-direction: column;
         gap: 1em;
@@ -66,9 +66,43 @@
 
 
         }
+        .ContentEditor_C_DescBox{
+            background-color: transparent;
+            resize: none;
+            height: 15em;
+            padding: 0.8em;
+            font-family: inherit;
+            font-size: 1em;
+            color: white;
+            outline: none;
+            border-radius: $primary_radius;
+
+        }
     }
 
     .ContentEditor_notes {
         border: 2px solid #252222;
+        height: 10em;
+    }
+
+    .ContentEditor_saveBtn{
+        background-color: transparent;
+        width: fit-content;
+        border: 1px solid white;
+        padding: 0.8em;
+        border-radius: $primary_radius;
+        background-color: orangered;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.8em;
+        transition: all 0.2s ease-in-out;
+
+        &:hover{
+            background-color: transparent;
+            color: orangered;;
+            border-color:  orangered;;
+        }
+        
     }
 }

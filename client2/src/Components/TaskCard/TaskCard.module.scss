@@ -11,7 +11,7 @@
     border-radius: $primary_radius;
     border: 3px solid $dark_sec_bg;
     background-color: $dark_sec_bg;
-    cursor: pointer;
+    // cursor: pointer;
     padding: 0.5em;
     transition: all 0.3s;
 
@@ -36,6 +36,8 @@
         color: #A9A9A9;
         font-size: smaller;
         // border: 1px solid white;
+        cursor: pointer;
+
 
     }
 

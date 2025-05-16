@@ -6,24 +6,24 @@ import Styles from './TaskCard.module.scss'
 
 
 
-function TaskCard({ title, desc, priority, pin, due, setOpenTask }, props) {
+function TaskCard({ id, title, desc, priority, pin, due, setOpenTask, deleteTask, togglePin }, props) {
 
 
 
     return (
         <div
             className={Styles.taskCardContainer}
-            onClick={setOpenTask}
+
         >
             <div className={Styles.titleContainer}>
                 <p>
                     {title}
                 </p>
 
-                {pin ? <Star size={20} fill='#FFE604' color='#FFE604' /> : <Star size={20} color='#FFE604' />}
+                {pin ? <Star onClick={()=>{togglePin(id)}} style={{cursor:"pointer"}} size={20} fill='#FFE604' color='#FFE604' /> : <Star onClick={()=>{togglePin(id)}} size={20} style={{cursor:"pointer"}} color='#FFE604' />}
 
             </div>
-            <div className={Styles.descriptionContainer}>
+            <div onClick={setOpenTask} className={Styles.descriptionContainer}>
                 <p>
                     {desc.length > 200 ? `${desc.slice(0, 200)}...` : desc}
                 </p>
@@ -36,13 +36,13 @@ function TaskCard({ title, desc, priority, pin, due, setOpenTask }, props) {
                     style={{
                         color: priority.toLowerCase() === "high" ?
                             "red" : priority.toLowerCase() === "medium" ?
-                            "yellow" : "#65fe08"
+                                "yellow" : "#65fe08"
 
                     }}
                 >
                     {priority}
                 </p>
-                <Trash />
+                <Trash style={{cursor:"pointer"}} onClick={()=>{deleteTask(id)}} />
             </div>
 
         </div>

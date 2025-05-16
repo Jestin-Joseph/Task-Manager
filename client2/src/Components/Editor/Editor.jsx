@@ -5,6 +5,7 @@ import ListItem from '@tiptap/extension-list-item'
 import TextStyle from '@tiptap/extension-text-style'
 
 import Styles from "./Editor.module.scss"
+import { useEffect, useState } from 'react'
 
 const extensions = [
   // Color.configure({ types: [TextStyle.name, ListItem.name] }),
@@ -21,7 +22,7 @@ const extensions = [
   }),
 ]
 
-const content = '<p>Hello World!</p>'
+// const content = '<h1>Hello World!</h1>'
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor()
@@ -155,6 +156,14 @@ const MenuBar = () => {
 }
 
 function MyEditor({ initialData }) {
+  const [content, setContent] = useState("")
+
+  useEffect(()=>{
+    if(initialData){
+      console.log("new", initialData)
+      setContent(initialData)
+    }
+  }, [initialData])
   return (
     <EditorProvider slotBefore={<MenuBar />} extensions={extensions} content={content}></EditorProvider>
   )

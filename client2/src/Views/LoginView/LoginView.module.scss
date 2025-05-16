@@ -1,0 +1,32 @@
+.LoginView_Container{
+    display: flex;
+    padding: 1em;
+    // border: 1px solid blue;
+    // gap: 2em;
+    height: 100vh;
+    color: white;
+    font-size: larger;
+    box-sizing: border-box;
+    
+    .LoginView_logo{
+        // border: 1px solid red;
+        flex: 1;
+        border-radius: 1.5em;
+        background: linear-gradient(-45deg, rgba(38,16,78, 18%), rgba(81, 39,106, 18%));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 45%;
+        }
+    }
+    .LoginView_forms_containeer{
+        flex: 1;
+        // border: 1px solid red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    
+}
