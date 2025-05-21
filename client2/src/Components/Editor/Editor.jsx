@@ -1,4 +1,6 @@
-import { EditorProvider, useCurrentEditor, FloatingMenu, BubbleMenu } from '@tiptap/react'
+import { EditorProvider, useCurrentEditor
+  // FloatingMenu, BubbleMenu 
+} from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 // import { Color } from '@tiptap/extension-color'
 import ListItem from '@tiptap/extension-list-item'

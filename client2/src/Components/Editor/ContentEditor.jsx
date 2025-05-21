@@ -47,7 +47,7 @@ function ContentEditor({ data, updateTask, close }) {
             />
             <div className={Styles.ContentEditor_Content}>
                 <span>
-                    <input className={Styles.ContentEditor_C_DateSelect} onChange={(e) => { handleEdit("due", e.target.value) }} type='date' value={localData?.due} />
+                    <input className={Styles.ContentEditor_C_DateSelect} onChange={close} type='date' value={localData?.due} />
                     <span className={Styles.ContentEditor_C_PrioritySelect}>
                         <select onChange={(e) => { handleEdit("priority", e.target.value) }} style={{ color: localData?.priority === "High" ? "red" : localData?.priority === "Medium" ? "yellow" : "#65fe08" }} value={localData?.priority} name="priority" id="priority">
                             <option value="Low">Low</option>
@@ -64,9 +64,14 @@ function ContentEditor({ data, updateTask, close }) {
                     placeholder='enter a description here'
                 />
             </div>
-            <button className={Styles.ContentEditor_saveBtn} onClick={onSaveChanges}>
-                Save Changes
-            </button>
+            <div className={Styles.ContentEditor_btnContainer}>
+                <button className={Styles.ContentEditor_cancelBtn} onClick={onSaveChanges}>
+                    Cancel
+                </button>
+                <button className={Styles.ContentEditor_saveBtn} onClick={onSaveChanges}>
+                    Save Changes
+                </button>
+            </div>
 
 
 

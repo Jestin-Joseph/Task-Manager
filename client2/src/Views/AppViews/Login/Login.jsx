@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './Login.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
-import api from '../../../services/api';
+import { authApi } from '../../../services/api';
+
+import { AuthContext } from '../../../Context/AuthContext';
 
 function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const path = location.pathname;
     const isSignIn = path === "/login";
+
+    const { login } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({})
 
@@ -56,19 +60,26 @@ function Login() {
     }
 
     const handleSubmit = () => {
-        if(isFormValid()){
-           api.post(isSignIn ? `/login` : `/register`, formData)
-            .then(response =>{
-                console.log(isSignIn ? "user logged in successfully!" : "user account created successfully");
-                navigate(isSignIn ? `/` : `/login`)
-                
-            })
-            .catch(error =>{
-                console.error('something wonet wrong', error.response.data || error.message)
-            })
+        if (isFormValid()) {
+            authApi.post(isSignIn ? `/login` : `/register`, formData)
+                .then(response => {
+                    console.log(isSignIn ? "user logged in successfully!" : "user account created successfully");
+                    // console.log("boo", response)
+                    if (isSignIn) {
+                        login(response.data.userDetails, response.data.token)
+                    }
+                    navigate(isSignIn ? `/` : `/login`)
+
+
+                })
+                .catch(error => {
+                    console.error('something wonet wrong', error.response.data || error.message)
+                    window.alert(error.response.data.message);
+                    // console.log(error.response.data.message)
+                })
         }
 
-        
+
     }
 
     return (

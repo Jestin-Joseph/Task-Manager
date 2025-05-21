@@ -1,4 +1,4 @@
-export const data = {
+export const data1 = {
     title: "All Tasks",
     content: [
         {

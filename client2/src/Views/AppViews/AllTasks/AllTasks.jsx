@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { data } from './Data'
 import { CirclePlus } from 'lucide-react';
 import TaskCard from '../../../Components/TaskCard/TaskCard';
 import Backdrop from '@mui/material/Backdrop';
 
 import Styles from './AllTasks.module.scss'
 import ContentEditor from '../../../Components/Editor/ContentEditor';
+import useAPI from '../../../services/useAPI';
 
 function AllTasks() {
     const { type } = useParams();  // Capture "all" or "pending"
     const taskType = type || "all";
-
-    const [taskData, setTaskData] = useState(data);
-
+    const [taskData, setTaskData] = useState();
     const [openTask, setOpenTask] = useState({
         showBackdrop: false,
         content: null,
     });
+
+    const { data, loading, error } = useAPI('/user/tasks')
+
+   
+
+    useEffect(() => {
+        if (data) {
+            console.log("task", data)
+            setTaskData(data)
+        }
+    }, [data])
+
+    const createNewTask = ()=>{
+        
+    }
+
+
 
     const deleteTask = (taskId) => {
         const updatedTasks = taskData.content.filter((task) =>
@@ -68,7 +83,7 @@ function AllTasks() {
             className={Styles.allTasks_ViewContainer}
         >
             <div className={Styles.allTasks_TitleContainer}>
-                <p>{data.title}</p>
+                <p>{taskData?.title}</p>
             </div>
             <div className={Styles.allTasks_TasksContainer}>
                 {
@@ -80,7 +95,7 @@ function AllTasks() {
                             desc={cont.description}
                             priority={cont.priority}
                             pin={cont.pin}
-                            due={cont.due}
+                            due={cont.due_date}
                             setOpenTask={() => setOpenTask({
                                 showBackdrop: true,
                                 content: cont

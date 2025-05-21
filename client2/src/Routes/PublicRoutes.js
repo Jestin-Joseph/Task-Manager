@@ -1,5 +1,6 @@
 // import AllTasks from "../Views/AppViews/AllTasks/AllTasks"
 import Login from "../Views/AppViews/Login/Login"
+
 export const publicRoutes = [
     {
         route: "/signup",

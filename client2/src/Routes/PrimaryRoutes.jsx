@@ -2,7 +2,7 @@ import PendingTasks from "../Views/AppViews/PendingTasks/PendingTasks";
 import AllTasks from "../Views/AppViews/AllTasks/AllTasks";
 import EditorView from "../Views/AppViews/EditiorView/EditorView";
 // import RichTextEditor from "../Components/Editor/Editor";
-import MyEditor from "../Components/Editor/Editor";
+// import MyEditor from "../Components/Editor/Editor";
 export const primaryRoutes = [
     {
         route: "/",
@@ -17,15 +17,21 @@ export const primaryRoutes = [
         permission: "user"
     },
     {
-        route: "/pendingtasks",
+        route: "/user/groups",
         page: <PendingTasks />,
-        title: "Pending Tasks",
+        title: "Groups",
         permission: "user"
     },
     {
-        route: "/trial",
-        page: <EditorView />,
-        title: "Pending Tasks",
+        route: "/user/projects",
+        page: <PendingTasks />,
+        title: "Projects",
+        permission: "user"
+    },
+    {
+        route: "/user/dashboard",
+        page: <PendingTasks />,
+        title: "Dashboard",
         permission: "user"
     }
 ];  

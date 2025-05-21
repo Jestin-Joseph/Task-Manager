@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Star } from 'lucide-react';
 import { Trash } from 'lucide-react';
 
@@ -7,7 +7,7 @@ import Styles from './TaskCard.module.scss'
 
 
 function TaskCard({ id, title, desc, priority, pin, due, setOpenTask, deleteTask, togglePin }, props) {
-
+   
 
 
     return (

@@ -1,5 +1,17 @@
 @import "../../StylingComponent/colors";
 
+@keyframes heightAdjust {
+    0% {
+      opacity:  0%;
+    }
+    50% {
+        opacity: 50%;
+    }
+    100% {
+        opacity: 100%;
+    }
+  }
+
 .sidebarContainer{
     background-color: $dark_bg;
     color: $text_side;
@@ -18,7 +30,9 @@
         }
 
         .user{
-            span:nth-child(2){display: block;}
+            .user_name{display: block;}
+
+            .user_settings{display: flex;}
         }
 
     }
@@ -64,13 +78,43 @@
         height: fit-content;        
         padding: 1em 0.5em;
         margin-top: auto ;
+        position: relative;
 
-        span:nth-child(1){
+        .user_avatar{
             // white-space: nowrap;
         }
-        span:nth-child(2){
+        .user_name{
             white-space: nowrap;
             display: none;
+        }
+
+        .user_settings{
+            // border: 1px solid red;
+            display: none;
+            position: absolute;
+            top: -125%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // display: flex;
+            align-items: center;
+            gap: 0.5em;
+            padding-left: 0.2em;
+            padding-top: 1em;
+            background: linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.2) 44%, rgba(255, 255, 255, 0.2) 80%);
+            animation: heightAdjust;
+            animation-duration: 0.3s;
+            animation-timing-function: ease-in-out;
+            transition: all 0.3s ease-in-out;
+            p{
+                font-weight: bold;
+
+                &:hover{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+
         }
     }
 }

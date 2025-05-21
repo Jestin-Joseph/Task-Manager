@@ -85,13 +85,40 @@
         height: 10em;
     }
 
+
+    .ContentEditor_btnContainer{
+        display: flex;
+        justify-content: space-between;
+    }
     .ContentEditor_saveBtn{
         background-color: transparent;
         width: fit-content;
         border: 1px solid white;
         padding: 0.8em;
         border-radius: $primary_radius;
-        background-color: orangered;
+        // background-color: orangered;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.8em;
+        transition: all 0.2s ease-in-out;
+
+        &:hover{
+            // background-color: transparent;
+            // background-color: #008000 ;
+            color: #008000;
+            border-color:  #008000;;
+        }
+        
+    }
+
+    .ContentEditor_cancelBtn{
+        background-color: transparent;
+        width: fit-content;
+        border: 1px solid white;
+        padding: 0.8em;
+        border-radius: $primary_radius;
+        // background-color: orangered;
         color: white;
         font-weight: bold;
         cursor: pointer;
@@ -103,6 +130,5 @@
             color: orangered;;
             border-color:  orangered;;
         }
-        
     }
 }
