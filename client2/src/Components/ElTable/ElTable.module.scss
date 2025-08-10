@@ -1,0 +1,49 @@
+@import "../../StylingComponent/colors";
+
+.tableWrapper {
+    border-radius: 8px;
+    border: 1px solid var(--table-border);
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    color: var(--text-side);
+
+}
+
+.table {
+    border-collapse: collapse;
+    // border: 1px solid var(--table-border);
+    width: 100%;
+
+    .tableHeading {
+        background-color: var(--highlight);
+    }
+
+    tr:first-child th {
+        border-top: none;
+    }
+
+   
+
+    tr td:first-child,
+    tr th:first-child {
+        border-left: none;
+    }
+
+    tr td:last-child,
+    tr th:last-child {
+        border-right: none;
+    }
+
+    th,
+    td {
+        padding: 0.5em 1em;
+        border: 1px solid var(--table-border);
+        text-align: left;
+    }
+}
+
+.functionContainer {
+    padding: 0.5em 1em;
+    ;
+}

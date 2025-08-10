@@ -2,7 +2,7 @@
 @import "../../../StylingComponent/style";
 
 .allTasks_ViewContainer {
-    color: white;
+    color:  var(--text-side);
     display: flex;
     // border: 1px solid red;
     flex-direction: column;

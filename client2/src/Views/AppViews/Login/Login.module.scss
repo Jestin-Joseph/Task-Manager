@@ -6,7 +6,7 @@
     // border: 1px solid green;
     width: 75%;
     justify-content: center;
-
+    max-height: 100%;
     .sign_up_heading_container {
 
         // border: 1px solid red;
@@ -37,17 +37,18 @@
         width: 100%;
         // border: 1px solid green;
 
-        .warning{
+        .warning {
             // border: 1px solid red;
             margin: 0;
             font-size: small;
             color: #adadad;
-            span{
+
+            span {
                 color: red;
             }
         }
 
-        .passWarning{
+        .passWarning {
             margin-bottom: 0.4em;
         }
 
@@ -84,7 +85,7 @@
                 width: 100%;
                 box-sizing: border-box;
             }
-           
+
             label {
                 font-size: 0.8em;
             }
@@ -168,10 +169,32 @@
         }
     }
 
+}
 
+@media only screen and (max-width: 600px) {
+    .sign_up_container {
+        width: 100%;
+        gap: 1.2em;
+        .sign_up_heading_container {
 
+            // border: 1px solid red;
+            p:nth-of-type(1) {
+                font-weight: bold;
+                font-size: 1.8em;
+                margin: 0;
+            }
 
+            p:nth-of-type(2) {
+                margin: 0;
+                margin-top: 0.5em;
+                font-size: small;
+                color: #646464;
 
-
+                a {
+                    color: #8242C9;
+                }
+            }
+        }
+    }
 
 }

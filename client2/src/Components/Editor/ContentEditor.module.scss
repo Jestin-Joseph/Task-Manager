@@ -38,8 +38,8 @@
 
             .ContentEditor_C_DateSelect {
                 background-color: transparent;
-                border: 1px solid $text_side;
-                color: $text_side;
+                border: 1px solid $dark_text_side;
+                color: $dark_text_side;
                 padding: 0.8em;
                 border-radius: 0.5em;
             }
@@ -50,13 +50,13 @@
             }
 
             .ContentEditor_C_PrioritySelect {
-                border: 1px solid $text_side;
+                border: 1px solid $dark_text_side;
                 border-radius: 0.5em;
                 padding-right: 0.4em;
                 select {
                     background-color: transparent;
                     border: none;
-                    color: $text_side;
+                    color: $dark_text_side;
                     padding: 0.8em;
                     font-weight: bold;
                     outline: none;

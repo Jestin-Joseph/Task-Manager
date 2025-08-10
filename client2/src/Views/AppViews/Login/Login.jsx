@@ -68,7 +68,8 @@ function Login() {
                     if (isSignIn) {
                         login(response.data.userDetails, response.data.token)
                     }
-                    navigate(isSignIn ? `/` : `/login`)
+                    setTimeout(() =>  navigate(isSignIn ? `/` : `/login`) , 2000)
+                    // navigate(isSignIn ? `/` : `/login`)
 
 
                 })

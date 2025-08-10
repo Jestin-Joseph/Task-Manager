@@ -9,3 +9,7 @@ exports.getUserTasksModel = (user) => {
     ).from('usertasks').where({user_id: user});
     return data;
 }
+
+exports.createUserTask = (user) => {
+    
+}

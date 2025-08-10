@@ -1,28 +1,28 @@
-import React, { useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //icons
 import { LayoutDashboard } from 'lucide-react';
 import { Dot } from 'lucide-react';
-import { LogOut } from 'lucide-react';
 import { UsersRound } from 'lucide-react';
 import { Target } from 'lucide-react';
 import { LayoutList } from 'lucide-react';
-
+import { PanelLeftOpen } from 'lucide-react';
+import { PanelLeftClose } from 'lucide-react';
 
 import { useNavigate } from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
+import { IconButton } from '@mui/material';
 
 import Styles from "./Sidebar.module.scss"
+import { useParams, useLocation } from 'react-router-dom';
 
-import { AuthContext } from '../../Context/AuthContext';
 
 
 function Sidebar() {
   const navigate = useNavigate();
-  const authContext = useContext(AuthContext);
-
+  const params = useParams();
+  const location = useLocation()
   const [selected, setSelected] = useState("All Tasks");
-  const [showSettings, setShowSettings] = useState(false);
+  const [expand, setExpand] = useState(false)
   const sideBarItems = [
     {
       id: 1,
@@ -50,14 +50,21 @@ function Sidebar() {
     }
   ]
 
+  useEffect(()=>{
+    if(location){
+      console.log("loc: ", location)
+    }
+  }, [location])
 
-  function onLogout() {
-    authContext.logout();
-    navigate('/login');
-  }
   return (
-    <aside className={Styles.sidebarContainer}>
-      <nav className={Styles.navItems}>
+    <aside className={`${Styles.sidebarContainer} ${expand && Styles.expandedSiderBar} `}>
+      <IconButton
+        sx={{ cursor: 'pointer', color: 'var(--text-side)', alignSelf: 'flex-start' }}
+        onClick={() => setExpand(!expand)}
+      >
+        {expand ? <PanelLeftClose /> : <PanelLeftOpen />}
+      </IconButton>
+      <nav className={`${Styles.navItems} ${expand && Styles.expandedNav} `}>
         {
           sideBarItems.map((item, index) => (
             <div
@@ -67,7 +74,7 @@ function Sidebar() {
             >
               <span className={Styles.itemIconAndPointer}>
                 <span>
-                  {item.name === selected && <Dot color='red' strokeWidth={3} />}
+                  {item.link === location.pathname && <Dot color='red' strokeWidth={3} />}
                 </span>
                 {item.icon}
               </span>
@@ -83,17 +90,6 @@ function Sidebar() {
           ))
         }
       </nav>
-      <div className={Styles.user}>
-        {showSettings && <div className={Styles.user_settings} >
-          <LogOut />
-          <p onClick={onLogout}>Log out</p>
-        </div>}
-        <span className={Styles.user_avatar} ><Avatar onClick={() => { setShowSettings(!showSettings) }} sx={{ cursor: "pointer" }} alt={`${authContext?.user?.first_name} ${authContext?.user?.last_name}`} src="/static/images/avatar/1.jpg" /></span>
-        <span className={Styles.user_name}>
-          {`${authContext?.user?.first_name} ${authContext?.user?.last_name}`}
-        </span>
-
-      </div>
     </aside>
   )
 }

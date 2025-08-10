@@ -5,7 +5,7 @@ const {getUserTasks, createUserTask} = require('../controllers/tasksController')
 
 router.get('/user/tasks', authtoken, getUserTasks);
 
-router.post('/user/tasks', authtoken, createUserTask);
+router.post('/user/tasks/cp', authtoken, createUserTask);
 
 
 module.exports = router;

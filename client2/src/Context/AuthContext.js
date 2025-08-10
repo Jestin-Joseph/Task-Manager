@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         const storedToken = localStorage.getItem('authToken');
-        console.log("vivdw:", storedUser)
         if (storedUser && storedToken) {
             setUser(JSON.parse(storedUser));
             setAuthToken(storedToken);

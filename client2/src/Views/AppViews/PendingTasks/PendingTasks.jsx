@@ -1,8 +1,12 @@
 import React from 'react'
 
 function PendingTasks() {
+
+
   return (
-    <div>Pending Tasks</div>
+    <div>
+      Pending Tasks
+    </div>
   )
 }
 

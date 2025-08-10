@@ -3,11 +3,12 @@ import Styles from "./ContentEditor.module.scss";
 // import MyEditor from "./Editor";
 
 function ContentEditor({ data, updateTask, close }) {
-    const [localData, setLocalData] = useState({
-        ...data,
-        title: data?.title || ""
-    });
-
+    
+    // const [localData, setLocalData] = useState({
+    //     ...data,
+    //     title: data?.title || ""
+    // });
+    const [localData, setLocalData] = useState({});
     function parseDMY(dateStr) {
         const [month, day, year] = dateStr?.split('/');
         return `${year}-${month.padStart(2, '0')}-${day?.padStart(2, '0')}`;
@@ -36,20 +37,25 @@ function ContentEditor({ data, updateTask, close }) {
         close();
     }
 
+    const onClose = () => {
+        setLocalData();
+        close();
+    }
+
     return (
         <div className={Styles.ContentEditor_Container}>
             <input
                 type="text"
                 className={Styles.ContentEditor_heading}
                 placeholder="Enter Heading Here.."
-                value={localData?.title}
+                value={localData?.title ?? ''}
                 onChange={(e) => { handleEdit("title", e.target.value) }}
             />
             <div className={Styles.ContentEditor_Content}>
                 <span>
-                    <input className={Styles.ContentEditor_C_DateSelect} onChange={close} type='date' value={localData?.due} />
+                    <input className={Styles.ContentEditor_C_DateSelect} onChange={(e) => { handleEdit("due", e.target.value) }}  type='date' value={localData?.due ?? ''} />
                     <span className={Styles.ContentEditor_C_PrioritySelect}>
-                        <select onChange={(e) => { handleEdit("priority", e.target.value) }} style={{ color: localData?.priority === "High" ? "red" : localData?.priority === "Medium" ? "yellow" : "#65fe08" }} value={localData?.priority} name="priority" id="priority">
+                        <select onChange={(e) => { handleEdit("priority", e.target.value) }} style={{ color: localData?.priority === "High" ? "red" : localData?.priority === "Medium" ? "yellow" : "#65fe08" }} value={localData?.priority ?? 'Low'} name="priority" id="priority">
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
@@ -59,20 +65,19 @@ function ContentEditor({ data, updateTask, close }) {
 
                 <textarea
                     className={Styles.ContentEditor_C_DescBox}
-                    value={localData?.description}
+                    value={localData?.description ?? ''}
                     onChange={(e) => { handleEdit("description", e.target.value) }}
                     placeholder='enter a description here'
                 />
             </div>
             <div className={Styles.ContentEditor_btnContainer}>
-                <button className={Styles.ContentEditor_cancelBtn} onClick={onSaveChanges}>
+                <button className={Styles.ContentEditor_cancelBtn} onClick={close}>
                     Cancel
                 </button>
                 <button className={Styles.ContentEditor_saveBtn} onClick={onSaveChanges}>
                     Save Changes
                 </button>
             </div>
-
 
 
         </div>

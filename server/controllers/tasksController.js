@@ -7,7 +7,7 @@ exports.getUserTasks = async (req, res) => {
         // const formatted_due = date.toLocaleDateString('en-US');
         // userTasks.due_date =  formatted_due;
         // console.log(formatted_due)
-        res.status(201).send({ title: "All Tasks", content: userTasks })
+        res.status(201).send( userTasks )
     } catch (error) {
         console.log("Error fetching data", error)
         res.status(500).json({
@@ -19,6 +19,7 @@ exports.getUserTasks = async (req, res) => {
 
 exports.createUserTask = async (req, res) => {
     try {
+        console.log(req.body)
         res.send("matchaaaa")
 
     } catch {

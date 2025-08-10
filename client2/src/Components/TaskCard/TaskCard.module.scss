@@ -3,14 +3,14 @@
 
 .taskCardContainer {
     // border: 1px solid red;
-
+    box-shadow: var(--container-shadow);
     display: flex;
     flex-direction: column;
     height: 210px;
     width: 300px;
     border-radius: $primary_radius;
-    border: 3px solid $dark_sec_bg;
-    background-color: $dark_sec_bg;
+    border: 3px solid var(--sec-bg);
+    background-color: var(--sec-bg);
     // cursor: pointer;
     padding: 0.5em;
     transition: all 0.3s;

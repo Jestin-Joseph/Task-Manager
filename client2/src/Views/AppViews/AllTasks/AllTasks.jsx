@@ -1,124 +1,122 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { CirclePlus } from 'lucide-react';
-import TaskCard from '../../../Components/TaskCard/TaskCard';
-import Backdrop from '@mui/material/Backdrop';
+
 
 import Styles from './AllTasks.module.scss'
-import ContentEditor from '../../../Components/Editor/ContentEditor';
 import useAPI from '../../../services/useAPI';
+import ElTable from '../../../Components/ElTable/ElTable';
+
+// import { api } from '../../../services/api';
+
+
+function PrioritySelect({ value, onChange }) {
+    return (
+      <select style={{padding:'0.5em', backgroundColor:'transparent', color:'inherit', borderRadius:'5px'}} value={value} onChange={(e) => onChange(e.target.value)}>
+        <option>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+    );
+  }
+
+  function StatusMenu({ value, onChange }) {
+    return (
+      <select style={{padding:'0.5em', backgroundColor:'transparent', color:'inherit', borderRadius:'5px'}} value={value} onChange={(e) => onChange(e.target.value)}>
+        <option>Open</option>
+        <option>In Progress</option>
+        <option>Blocked</option>
+        <option>Done</option>
+      </select>
+    );
+  }
+
+  function DateSelect({ value, onChange }) {
+    const yyyyMMdd = value
+      ? new Date(value).toISOString().slice(0, 10)
+      : "";
+
+    return (
+      <input style={{padding:'0.5em', backgroundColor:'transparent', color:'inherit', borderRadius:'5px', border: 'inherit'}} type='date' value={yyyyMMdd} onChange={(e) => onChange(e.target.value)} />
+    )
+  }
+
+  const components = {
+    priority: PrioritySelect, // editable
+    status: StatusMenu,       // editable
+    due_date: DateSelect
+
+  };
+
+  const columns = [
+    { header: 'Title', accessor: 'title' },
+    { header: 'Description', accessor: 'description' },
+    { header: 'Priority', accessor: 'priority' },
+    { header: 'Due', accessor: 'due_date', format: (v) => new Date(v).toLocaleDateString() },
+    { header: 'Status', accessor: 'status' },
+  ];
 
 function AllTasks() {
-    const { type } = useParams();  // Capture "all" or "pending"
-    const taskType = type || "all";
+   
     const [taskData, setTaskData] = useState();
-    const [openTask, setOpenTask] = useState({
-        showBackdrop: false,
-        content: null,
-    });
+    // const [openTask, setOpenTask] = useState({
+    //     showBackdrop: false,
+    //     content: null,
+    // });
 
+    // eslint-disable-next-line no-unused-vars
     const { data, loading, error } = useAPI('/user/tasks')
 
-   
+
 
     useEffect(() => {
         if (data) {
-            console.log("task", data)
             setTaskData(data)
         }
     }, [data])
 
-    const createNewTask = ()=>{
-        
-    }
+    // const deleteTask = (taskId) => {
+    //     const updatedTasks = taskData.content.filter((task) =>
+    //         task.id !== taskId
+    //     );
+    //     setTaskData({ ...taskData, content: updatedTasks })
+    // }
+
+    // const togglePin = (taskId) => {
+    //     const updatedTasks = taskData.content.map((task) =>
+    //         task.id === taskId ? { ...task, pin: !task.pin } : task
+    //     );
+    //     setTaskData({
+    //         ...taskData,
+    //         content: updatedTasks,
+    //     });
+    // };
 
 
 
-    const deleteTask = (taskId) => {
-        const updatedTasks = taskData.content.filter((task) =>
-            task.id !== taskId
-        );
-        setTaskData({ ...taskData, content: updatedTasks })
-    }
-
-    const togglePin = (taskId) => {
-        const updatedTasks = taskData.content.map((task) =>
-            task.id === taskId ? { ...task, pin: !task.pin } : task
-        );
-        setTaskData({
-            ...taskData,
-            content: updatedTasks,
-        });
-    };
-
-    const updateTask = (updatedTask) => {
-        const taskExists = taskData.content.some(task => task.id === updatedTask.id);
-
-        if (taskExists) {
-            // Update existing task
-            const updatedContent = taskData.content.map((task) =>
-                task.id === updatedTask.id ? updatedTask : task
-            );
-            setTaskData({ ...taskData, content: updatedContent });
-        } else {
-            // Create new task
-            const taskID = taskData.content.length + 1;
-            const today = new Date().toLocaleDateString('en-US'); // e.g., "05/10/2025"
-            const newTask = {
-                ...updatedTask,
-                id: taskID,
-                pin: false,
-                due: updatedTask.due || today
-            };
-            setTaskData({
-                ...taskData,
-                content: [...taskData.content, newTask]
-            });
-        }
-    };
-
+    // const createUpdateTask = (taskData) => {
+    //     // console.log(taskData)
+    //     api.post('/user/tasks/cp', taskData).then().catch()
+    // }
 
     return (
         <div
             className={Styles.allTasks_ViewContainer}
         >
             <div className={Styles.allTasks_TitleContainer}>
-                <p>{taskData?.title}</p>
+                <p>All Tasks</p>
             </div>
             <div className={Styles.allTasks_TasksContainer}>
-                {
-                    taskData?.content.map((cont) => (
-                        <TaskCard
-                            key={cont.id}
-                            id={cont.id}
-                            title={cont.title}
-                            desc={cont.description}
-                            priority={cont.priority}
-                            pin={cont.pin}
-                            due={cont.due_date}
-                            setOpenTask={() => setOpenTask({
-                                showBackdrop: true,
-                                content: cont
-                            })}
-                            deleteTask={deleteTask}
-                            togglePin={togglePin}
-                        />
-                    ))
-                }
-                {taskType === "all" && <div
-                    className={Styles.allTasks_AddTaskBtn}
-                    onClick={() => setOpenTask({
-                        showBackdrop: true,
-                        content: {}
-                    })}
-                >
-                    <CirclePlus size={50} />
-                </div>}
+                <ElTable
+                    columns={columns}
+                    content={['title', 'description', 'priority', 'due_date', 'status']}
+                    components={components}
+                    data={taskData}
+                    onChange
+                />
 
             </div>
 
             {/* open the task */}
-            <Backdrop
+            {/* <Backdrop
                 sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
                 open={openTask.showBackdrop}
             >
@@ -127,13 +125,12 @@ function AllTasks() {
                 >
                     <ContentEditor
                         data={openTask?.content}
-                        updateTask={updateTask}
-                        close={() => { setOpenTask({ showBackdrop: false }) }}
+                        updateTask={createUpdateTask}
+                        close={() => { setOpenTask({ showBackdrop: false, content: null }) }}
                     />
                 </div>
 
-            </Backdrop>
-
+            </Backdrop> */}
 
         </div>
     )

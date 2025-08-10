@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { api } from "./api";
+import { AuthContext } from "../Context/AuthContext";
 
 function useAPI(endpoint) {
+    const { authToken } = useContext(AuthContext);
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(null);
@@ -12,15 +14,10 @@ function useAPI(endpoint) {
     //     baseURL: process.env.REACT_APP_USER_BASE_URL,
     // })
 
+    // const token = localStorage.getItem("authToken");
     const fetchData = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem("authToken");
-            // const resp = await api.get(endpoint, {
-            //     headers: {
-            //         Authorization: `Bearer ${token}`
-            //     }
-            // })
             const resp = await api.get(endpoint)
 
             setData(resp.data);
@@ -35,9 +32,11 @@ function useAPI(endpoint) {
     }
 
     useEffect(() => {
-        fetchData();
+        if (authToken) {
+            fetchData();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [endpoint])
+    }, [endpoint, authToken])
 
 
     // return { data, loading, error, refetch: fetchData }; 
