@@ -47,7 +47,7 @@
     padding: 6px;
     height: 100%;
     width: 64px;
-    border-right: 1px solid #535353;
+    border-right: 1px solid var(--sidebar_border);
     transition: all 0.3s;
     display: flex;
     flex-direction: column;

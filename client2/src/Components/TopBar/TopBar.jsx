@@ -38,7 +38,8 @@ function TopBar() {
             <div className={Styles.rightControls}>
                 <ThemeToggle />
                 <Avatar
-                    sx={{ cursor: 'pointer', backgroundColor: '#1C2A4B' }}
+
+                    sx={{ cursor: 'pointer', backgroundColor: '#1C2A4B', height:'35px', width:'35px' }}
                     alt={`${authContext?.user?.first_name} ${authContext?.user?.last_name}`}
                     src="/static/images/avatar/1.jpg"
                     onClick={() => setOpen(!open)} // setOpen(prev => !prev)

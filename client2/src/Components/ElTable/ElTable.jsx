@@ -1,5 +1,8 @@
 import React from 'react'
 import Styles from './ElTable.module.scss'
+import { Plus } from 'lucide-react';
+import { Button, Typography } from '@mui/material';
+
 
 function ElTable({
     columns,
@@ -64,7 +67,10 @@ function ElTable({
                 </tbody>
             </table>
             <div className={Styles.functionContainer}>
-                some
+                <Button size='small' color='inherit' sx={{display: 'flex', gap:'0.5em'}}>
+                    <Plus size={20} /> 
+                    <Typography> Create </Typography>
+                </Button>
             </div>
         </div>
     )

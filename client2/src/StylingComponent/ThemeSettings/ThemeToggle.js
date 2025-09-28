@@ -40,11 +40,13 @@ export const ThemeProvider = ({ children }) => {
 export const ThemeToggle = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
     return (
-        <button onClick={toggleTheme} style={{backgroundColor: theme === 'light' ? "#e5e5e5" : "#2c2c2c", color: theme === 'light' ? '#000' : '#fff'}} className={styles.toggleButton}>
+        <button onClick={toggleTheme} 
+        style={{backgroundColor: theme === 'light' ? "#e5e5e5" : "#2c2c2c", color: theme === 'light' ? '#000' : '#fff'}} 
+        className={styles.toggleButton}>
             {/* Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode */}
             {theme === 'light' ?
-                <Sun /> :
-                <Moon />
+                <Sun fontSize={'small'} /> :
+                <Moon fontSize={'small'} />
             }
         </button>
     );

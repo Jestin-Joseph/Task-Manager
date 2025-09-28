@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 //icons
 import { LayoutDashboard } from 'lucide-react';
@@ -13,15 +13,13 @@ import { useNavigate } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 
 import Styles from "./Sidebar.module.scss"
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 
 function Sidebar() {
   const navigate = useNavigate();
-  const params = useParams();
   const location = useLocation()
-  const [selected, setSelected] = useState("All Tasks");
   const [expand, setExpand] = useState(false)
   const sideBarItems = [
     {
@@ -50,12 +48,6 @@ function Sidebar() {
     }
   ]
 
-  useEffect(()=>{
-    if(location){
-      console.log("loc: ", location)
-    }
-  }, [location])
-
   return (
     <aside className={`${Styles.sidebarContainer} ${expand && Styles.expandedSiderBar} `}>
       <IconButton
@@ -70,7 +62,7 @@ function Sidebar() {
             <div
               key={item.id}
               className={Styles.navItem}
-              onClick={() => { setSelected(item.name); navigate(item.link) }}
+              onClick={() => { navigate(item.link) }}
             >
               <span className={Styles.itemIconAndPointer}>
                 <span>

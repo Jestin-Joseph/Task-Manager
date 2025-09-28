@@ -1,0 +1,29 @@
+.ElBoard_Container {
+    display: flex;
+    gap: 1em;
+    
+
+    .board {
+        border: 1px solid var(--table-border);
+        border-radius: 8px;
+        width: fit-content;
+        // max-width: 400px;
+        min-height: 500px;
+        box-sizing: border-box;
+        overflow: hidden;
+        
+
+        .boardHeading{
+            background-color: var(--highlight);
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+
+        .boardContent{
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+    }
+}

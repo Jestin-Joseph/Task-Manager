@@ -2,12 +2,12 @@
 
 .topBarContainer {
     width: 100%;
-    padding: 1em;
+    padding: 0.5em 1em;
     color: var(--text-side);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #535353;
+    border-bottom: 1px solid var(--sidebar_border);
     box-sizing: border-box;
     position: relative;
     //  background-color: red;
@@ -15,8 +15,8 @@
     .logo_icon {
         // background: linear-gradient(-45deg, rgba(38, 16, 78), rgba(81, 39, 106));
         // border: 1px solid red;
-        max-height: 3em;
-        max-width: 3em;
+        max-height: 2em;
+        max-width: 2em;
 
         img {
             object-fit: contain;
@@ -35,9 +35,7 @@
     .settings_menu {
         position: absolute;
         top: calc(100% + 8px);
-        /* below the avatar */
         right: 0;
-        /* right aligned with avatar */
         min-width: 300px;
         background: var(--sec-bg);
         color: var(--text-side);

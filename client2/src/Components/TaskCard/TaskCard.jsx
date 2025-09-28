@@ -7,12 +7,11 @@ import { ThemeContext } from '../../StylingComponent/ThemeSettings/ThemeToggle';
 
 
 
-function TaskCard({ id, title, desc, priority, pin, due, setOpenTask, deleteTask, togglePin }, props) {
+function TaskCard({ id, title, desc, priority, pin, due, setOpenTask, deleteTask, togglePin, onChangeStaus }, props) {
     const { theme } = useContext(ThemeContext)
 
     const getPriorityStyle = (priority) => {
         const p = priority.toLowerCase();
-        console.log("theme", theme)
         if (theme === "light") {
             return {
                 high: { bg: "#ffebee", color: "#b71c1c" },  // light pink / deep red
@@ -34,6 +33,9 @@ function TaskCard({ id, title, desc, priority, pin, due, setOpenTask, deleteTask
     return (
         <div
             className={Styles.taskCardContainer}
+            draggable
+            onDragEnd={()=>{onChangeStaus(id)}}
+            
 
         >
             <div className={Styles.titleContainer}>

@@ -1,0 +1,110 @@
+export const data = [
+    {
+        "id": "81ffc95a-dda9-47aa-9302-51594f016c7c",
+        "title": "Team Standup",
+        "description": "Join the daily standup meeting to share progress and blockers with the team.",
+        "priority": "High",
+        "due_date": "04/09/2025",
+        "status": "todo",
+        "pin": true,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "73ecfbca-bbd0-45e6-9571-f27e51347343",
+        "title": "Code Review",
+        "description": "Review pull requests from the frontend team and provide feedback.",
+        "priority": "Low",
+        "due_date": "10/04/2025",
+        "status": "done",
+        "pin": false,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "92148449-72de-438c-87d7-0d9210b7055d",
+        "title": "Database Backup",
+        "description": "Perform a scheduled backup of the production PostgreSQL database.",
+        "priority": "High",
+        "due_date": "11/04/2025",
+        "status": "in progress",
+        "pin": true,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "db29c53b-4ef6-4289-a956-122afb1cef2a",
+        "title": "Client Presentation",
+        "description": "Prepare slides for the quarterly progress meeting with the client.",
+        "priority": "Medium",
+        "due_date": "04/14/2025",
+        "status": "todo",
+        "pin": false,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "b36db76d-1118-4d7c-bcb0-fbe089d83dfe",
+        "title": "Bug Fix: Login Issue",
+        "description": "Resolve the bug causing intermittent login failures on Safari browsers.",
+        "priority": "Medium",
+        "due_date": "06/13/2025",
+        "status": "todo",
+        "pin": false,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "a208f69d-bf2d-4a07-9f08-cdd5390f8138",
+        "title": "Team Lunch",
+        "description": "Coordinate team lunch outing and confirm reservation at the restaurant.",
+        "priority": "Low",
+        "due_date": "01/15/2025",
+        "status": "in progress",
+        "pin": false,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "1957a65c-374b-46ad-a36c-ab8aa568476a",
+        "title": "Update Dependencies",
+        "description": "Upgrade all outdated npm packages and test for compatibility.",
+        "priority": "Low",
+        "due_date": "04/16/2025",
+        "status": "done",
+        "pin": false,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "b08a21eb-3cf7-4bfe-ac66-1aff4d849010",
+        "title": "Security Audit",
+        "description": "Perform a security audit on the backend APIs and fix vulnerabilities.",
+        "priority": "High",
+        "due_date": "09/11/2025",
+        "status": "todo",
+        "pin": true,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    },
+    {
+        "id": "0c68c1e9-552f-4da4-9325-8307f18095b5",
+        "title": "Write Blog Post",
+        "description": "Draft a technical blog post about using FastAPI with PostgreSQL.",
+        "priority": "Low",
+        "due_date": "09/01/2025",
+        "status": "done",
+        "pin": false,
+        "user_id": "2eb72918-44ff-42d9-aa40-aa67552c7c4a",
+        "created_at": "2025-05-17T20:21:40.529Z",
+        "updated_at": "2025-05-17T20:21:40.529Z"
+    }
+]

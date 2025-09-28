@@ -11,7 +11,30 @@ $light_box_shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 $light_highlight: #F8F8F8;
 
 
+
+
 //common colors
+$btn_primary: #1E88E5;   // Medium blue
+$btn_primary_hover: #1565C0;
+
+// Secondary (neutral gray, slightly cool)
+$btn_secondary: #6C757D;
+$btn_secondary_hover: #5A6268;
+
+// Success (green, but not too bright)
+$btn_success: #2E7D32;
+$btn_success_hover: #1B5E20;
+
+// Danger (strong red)
+$btn_danger: #D32F2F;
+$btn_danger_hover: #B71C1C;
+
+// Text contrast (auto picks white or black)
+$btn_text_light: #FFFFFF;
+$btn_text_dark: #000000;
+
+// $sidebar_border_light: #dfdfdf;
+// $sidebar_border_dark: #535353;
 :root {
   --bg: #{$light_bg};
   --text-side: #{$light_text_side};
@@ -19,6 +42,7 @@ $light_highlight: #F8F8F8;
   --container-shadow: #{$light_box_shadow};
   --highlight: #{$light_highlight};
   --table-border: #cccccc;
+  --sidebar_border: #dfdfdf;
 }
 
 [data-theme='dark'] {
@@ -28,4 +52,5 @@ $light_highlight: #F8F8F8;
   --container-shadow: #{$dark_box_shadow};
   --highlight: #{$dark_highlight};
   --table-border: #444444; 
+  --sidebar_border: #535353;
 }

@@ -5,11 +5,15 @@ import { authApi } from '../../../services/api';
 
 import { AuthContext } from '../../../Context/AuthContext';
 
+import { EyeClosed, Eye } from 'lucide-react';
+
 function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const path = location.pathname;
     const isSignIn = path === "/login";
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const { login } = useContext(AuthContext);
 
@@ -68,7 +72,7 @@ function Login() {
                     if (isSignIn) {
                         login(response.data.userDetails, response.data.token)
                     }
-                    setTimeout(() =>  navigate(isSignIn ? `/` : `/login`) , 2000)
+                    setTimeout(() => navigate(isSignIn ? `/` : `/login`), 2000)
                     // navigate(isSignIn ? `/` : `/login`)
 
 
@@ -99,11 +103,32 @@ function Login() {
                 <input value={formData?.email} onChange={(e) => { handleFormEdit("email", e.target.value) }} placeholder='Email' type='email' className={styles.sign_up_email_input} />
                 <span className={styles.sign_up_pass_terms} >
                     {!isSignIn && <p className={`${styles.warning} ${styles.passWarning}`}><span>*</span> Password should have atleast 10 characters, including atleast one number, symbol and uppercase alphabet.</p>}
-                    <input value={formData?.password}
-                        // pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-                        pattern="\w{3,16}"
-                        required
-                        onChange={(e) => { handleFormEdit("password", e.target.value) }} placeholder='Password' type='password' />
+                    <div style={{ position: "relative" }}>
+                        <input
+                            value={formData?.password}
+                            pattern="\w{3,16}"
+                            required
+                            onChange={(e) => handleFormEdit("password", e.target.value)}
+                            placeholder="Password"
+                            type={showPassword ? "text" : "password"}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{
+                                position: "absolute",
+                                right: "8px",
+                                top: "50%",
+                                transform: "translateY(-50%)",
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer",
+                                color: '#fff'
+                            }}
+                        >
+                            {showPassword ? <Eye /> : <EyeClosed />}
+                        </button>
+                    </div>
                     <label>
                         <input type="checkbox" />
                         {isSignIn ? <p>Remember me</p> : <p>I accept the <a href='/'>Accept Terms and Conditions</a></p>}

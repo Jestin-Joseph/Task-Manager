@@ -11,6 +11,15 @@
 
 
     .allTasks_TitleContainer {
+        display: flex;
+        height: fit-content;
+        justify-content: space-between;
+        align-items: center;
+        
+        .toggleButton{
+            // height: 30px;
+           
+        }
 
         p {
             font-weight: bold;
